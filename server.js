@@ -7,6 +7,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("✅ InstaIQ backend is running successfully");
+});
+
 app.post("/api/chat", async (req, res) => {
   try {
     const { messages, system } = req.body;
