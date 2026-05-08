@@ -190,7 +190,7 @@ export default function App() {
     setLoading(true);
 
     try {
-      const response = await fetch("https://instaiq-chatbot.onrender.com/api/chat", {
+      const response = await fetch("https://instaiq.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ model: "llama-3.3-70b-versatile", max_tokens: 1000, system: SYSTEM_PROMPT, messages: newMessages }),
