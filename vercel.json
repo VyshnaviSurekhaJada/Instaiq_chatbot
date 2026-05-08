@@ -24,7 +24,6 @@
   "env": {
     "GROQ_API_KEY": "@GROQ_API_KEY"
   },
-  "envFile": ".env.production",
   "functions": {
     "api/*.js": {
       "memory": 1024,
