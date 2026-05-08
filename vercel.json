@@ -1,0 +1,60 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "framework": "react",
+  "public": "build",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ],
+  "routes": [
+    {
+      "src": "^/api/chat$",
+      "dest": "/api/chat.js",
+      "methods": ["POST", "OPTIONS"]
+    },
+    {
+      "src": "^/(?!api).*",
+      "dest": "/index.html",
+      "status": 200
+    }
+  ],
+  "env": {
+    "GROQ_API_KEY": "@GROQ_API_KEY"
+  },
+  "envFile": ".env.production",
+  "functions": {
+    "api/*.js": {
+      "memory": 1024,
+      "maxDuration": 60,
+      "runtime": "nodejs18.x"
+    }
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "REACT_APP_API_URL": "/api"
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type"
+        }
+      ]
+    }
+  ]
+}
