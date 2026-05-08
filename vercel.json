@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "framework": "react",
+  "framework": "create-react-app",
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "rewrites": [
