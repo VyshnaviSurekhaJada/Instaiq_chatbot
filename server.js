@@ -13,37 +13,36 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/chat", async (req, res) => {
+  console.log("🔥 API route hit");
+
   try {
+    console.log("📨 Request body:", req.body);
+
     const { messages, system } = req.body;
 
-    // Validation
     if (!messages || !Array.isArray(messages)) {
+      console.log("❌ Invalid messages");
+
       return res.status(400).json({
         error: "Invalid messages array",
       });
     }
 
-    // Format messages
-    const formattedMessages = [
-      {
-        role: "system",
-        content:
-          system ||
-          "You are InstaIQ, an Instagram growth expert chatbot.",
-      },
-      ...messages.map((m) => ({
-        role: m.role || "user",
-        content: m.content || "",
-      })),
-    ];
-
-    console.log("📨 Sending request to Groq...");
+    console.log("✅ Sending request to Groq");
 
     const response = await axios.post(
       "https://api.groq.com/openai/v1/chat/completions",
       {
         model: "llama3-8b-8192",
-        messages: formattedMessages,
+        messages: [
+          {
+            role: "system",
+            content:
+              system ||
+              "You are InstaIQ chatbot.",
+          },
+          ...messages,
+        ],
         temperature: 0.7,
         max_tokens: 1000,
       },
@@ -55,11 +54,11 @@ app.post("/api/chat", async (req, res) => {
       }
     );
 
-    console.log("✅ Response received from Groq");
+    console.log("✅ Groq response received");
 
     const text =
       response.data?.choices?.[0]?.message?.content ||
-      "No response generated.";
+      "No response";
 
     return res.json({
       content: [
@@ -72,7 +71,7 @@ app.post("/api/chat", async (req, res) => {
 
   } catch (error) {
     console.error(
-      "❌ FULL BACKEND ERROR:",
+      "❌ FULL ERROR:",
       error.response?.data || error.message
     );
 
