@@ -8,9 +8,9 @@ InstaIQ helps users understand Instagram growth strategies, content optimization
 
 ## 🚀 Live Demo
 
-Frontend: https://your-frontend-url.vercel.app
+Frontend: https://instaiqchatbot-93l6y3iwx-vyshnavisurekhajada-9237s-projects.vercel.app
 
-Backend: https://your-backend-url.onrender.com
+Backend: https://instaiq.onrender.com
 
 ---
 
@@ -78,7 +78,7 @@ instaiq/
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/instaiq.git
+git clone https://github.com/VyshnaviSurekhaJada/Instaiq_chatbot.git
 ```
 
 ---
