@@ -196,7 +196,18 @@ export default function App() {
         body: JSON.stringify({ "model": "llama3-8b-8192", "max_tokens": 1000, "system": SYSTEM_PROMPT, "messages": newMessages }),
       });
       const data = await response.json();
-      const reply = data.content?.map((b) => b.text || "").join("\n") || "Sorry, try again!";
+
+      console.log("API RESPONSE:", data);
+
+      let reply = "";
+
+      if (data.content && Array.isArray(data.content)) {
+        reply = data.content.map((b) => b.text || "").join("\n");
+      } else if (data.error) {
+        reply = `❌ ${data.error}`;
+      } else {
+        reply = "Sorry, try again!";
+      }
       setSessions((prev) => prev.map((s) => s.id === activeId ? { ...s, messages: [...newMessages, { role: "assistant", content: reply }] } : s));
     } catch {
       setSessions((prev) => prev.map((s) => s.id === activeId ? { ...s, messages: [...newMessages, { role: "assistant", content: "Oops! Make sure the server is running with: node server.js 🙏" }] } : s));
