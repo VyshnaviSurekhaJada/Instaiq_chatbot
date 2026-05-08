@@ -193,7 +193,7 @@ export default function App() {
       const response = await fetch("https://instaiq.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ model: "llama-3.3-70b-versatile", max_tokens: 1000, system: SYSTEM_PROMPT, messages: newMessages }),
+        body: JSON.stringify({ "model": "llama3-8b-8192", "max_tokens": 1000, "system": SYSTEM_PROMPT, "messages": newMessages }),
       });
       const data = await response.json();
       const reply = data.content?.map((b) => b.text || "").join("\n") || "Sorry, try again!";
