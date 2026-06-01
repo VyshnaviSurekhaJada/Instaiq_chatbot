@@ -8,7 +8,7 @@ InstaIQ helps users understand Instagram growth strategies, content optimization
 
 ## 🚀 Live Demo
 
-Frontend: https://instaiqchatbot-93l6y3iwx-vyshnavisurekhajada-9237s-projects.vercel.app
+Frontend: https://instaiqchatbot.vercel.app/
 
 Backend: https://instaiq.onrender.com
 
