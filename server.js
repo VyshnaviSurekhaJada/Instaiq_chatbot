@@ -30,6 +30,8 @@ app.post("/api/chat", async (req, res) => {
 
     console.log("✅ Sending request to Groq");
 
+    console.log("Key exists:", !!process.env.GROQ_API_KEY);
+    console.log("Key prefix:", process.env.GROQ_API_KEY?.substring(0, 4));
     const response = await axios.post(
       "https://api.groq.com/openai/v1/chat/completions",
       {
